@@ -1,5 +1,5 @@
-//public database
-const mongoose = require('mongoose');
+// public database
+const mongoose = require('mongoose')
 
 var WordSchema = new mongoose.Schema({
   simp: {
@@ -39,9 +39,8 @@ var WordSchema = new mongoose.Schema({
     minlength: 1,
     trim: true
   }
-  }]
-});
+})
 
-var Word = mongoose.model('Word', WordSchema);
+const Word = mongoose.model('Word', WordSchema)
 
-module.exports = {Word};
+module.exports = {Word}
