@@ -8,16 +8,18 @@ describe('GET /word', () => {
   it('Should get a return from search request', (done) => {
     request(app)
       .get('/entry')
-      .send({	"trad":"K粉" })
+      .send({'trad': 'K粉'})
       .expect(200)
       .expect((res) => {
-        expect(JSON.parse(res.text).word[0].simp).toBe("K粉")
+        expect(JSON.parse(res.text).word[0].simp).toBe('K粉')
       })
-      .end((err,res) => {
+      .end((err, res) => {
         if (err) {
           return done(err)
         }
         done()
+
+
       })
   })
 })
