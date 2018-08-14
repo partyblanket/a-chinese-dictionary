@@ -11,7 +11,6 @@ var WordSchema = new mongoose.Schema({
   trad: {
     type: String,
     required: true,
-    unique: true,
     minlength: 1,
     trim: true
   },

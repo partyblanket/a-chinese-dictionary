@@ -3,10 +3,10 @@ const {Word} = require('./../server/models/word')
 const fs = require('fs')
 const {MongoClient} = require('mongodb')
 
-let docArray = []
+const docArray = []
 
 fs.readFileSync(__dirname + '/cedict_ts.u8').toString().split('\n').forEach((line) => {
-  if (line[0] === '#') {return}
+  if (line[0] === '#' || line[0] === ' mongo') {return}
   let chars = line.split(' ')
   let proArray = /(?<=\[)[\w\s:]+(?=\])/.exec(line) || ['none']
   let defArray = /(?<=\/).+(?=\/)/.exec(line) || ['none']
@@ -24,7 +24,7 @@ MongoClient.connect('mongodb://localhost:27017/dict', (err, client) => {
     return console.log('Unable to connect to Mongodb server')
   }
   console.log('Connected to Mongodb server')
-  client.db('dict').collection('dict').insertMany(docArray).then((res, err) => {
+  client.db('dict').collection('words').insertMany(docArray).then((res, err) => {
     console.log(res.result)
   }).catch(err => console.log(err))
 
