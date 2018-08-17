@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 //mongoose.Promise = global.Promise; // - not needed in new version i believe
-// mongoose.connect(process.env.MONGODB_URI);
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 } else {
