@@ -16,8 +16,7 @@ app.get('/entry/:tagId', async (req, res) => {
   resArray = []
   console.log(req.params.tagId)
   wordString = req.params.tagId
-  let word = await search(req.params.tagId)
-  console.log(resArray);
+  await search(req.params.tagId)
   res.send(resArray)
 })
 

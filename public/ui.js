@@ -1,3 +1,5 @@
+const pinyinConverter = new PinyinConverter
+
 class UI {
   constructor () {
     this.trans = document.getElementById('trans')
@@ -22,6 +24,7 @@ class UI {
 
     tran.forEach(word => {
       console.log(word)
+      let pro = pinyinConverter.convert(word.cnpro)
       toInsert = toInsert.concat('', `
       <br>
         <div class="row">
@@ -29,7 +32,7 @@ class UI {
             <p>${word.trad}</p>
           </div>
           <div class="col-2">
-            <p>${word.cnpro}</p>
+            <p>${pro}</p>
           </div>
 
           <div class="col-3">
@@ -44,4 +47,11 @@ class UI {
 
     this.trans.innerHTML = toInsert
   }
+  //
+  // parsePro (orig) {
+  //
+  // }
 }
+
+
+console.log(pinyinConverter.convert('ni3 hao3'))
