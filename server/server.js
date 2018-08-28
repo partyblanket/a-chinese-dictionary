@@ -16,12 +16,40 @@ app.get('/entry/:tagId', async (req, res) => {
   resArray = []
   console.log(req.params.tagId)
   wordString = req.params.tagId
-  await search(req.params.tagId)
+  /*if all latin aplphabet then use english search*/
+  if (/^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/g.test(wordString)) {
+    await searchEnlish(wordString)
+  } else if (/^([0-9A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/g.test(wordString)) {
+    await searchPinyin(wordString)
+  } else {
+    await search(wordString)
+  }
   res.send(resArray)
 })
 
 let resArray = []
 let wordString = ''
+
+async function searchEnlish (text) {
+  let foundWord = await Word.find({'en': text})
+  // if result, add to result array
+  if (foundWord.length > 0) {
+    foundWord.forEach((word) => {
+      resArray.push(word)
+    })
+  }
+}
+
+async function searchPinyin (text) {
+  text = text.split(/(?<=[0-9])(?!\s)(?!$)/g).join(' ')
+  let foundWord = await Word.find({'cnpro': text})
+  // if result, add to result array
+  if (foundWord.length > 0) {
+    foundWord.forEach((word) => {
+      resArray.push(word)
+    })
+  }
+}
 
 // function should be moved to seperate file!
 async function search (word) {

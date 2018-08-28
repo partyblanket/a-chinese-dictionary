@@ -18,8 +18,6 @@ describe('GET /word', () => {
           return done(err)
         }
         done()
-
-
       })
   })
 })

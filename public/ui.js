@@ -10,7 +10,7 @@ class UI {
     <div class="container">
       <div class="row">
         <div class="col-1">
-          <p>Trad</p>
+          <p>中文</p>
         </div>
         <div class="col-2">
           <p>Pronounciation</p>
@@ -24,12 +24,19 @@ class UI {
 
     tran.forEach(word => {
       console.log(word)
-      let pro = pinyinConverter.convert(word.cnpro)
+      let pro = word.cnpro
+      if (toneMarkBtn.checked === true) {
+        pro = pinyinConverter.convert(word.cnpro)
+      }
+      let char = word.simp
+      if (tradSimpBtn.checked === true) {
+        char = word.trad
+      }
       toInsert = toInsert.concat('', `
       <br>
         <div class="row">
           <div class="col-1">
-            <p>${word.trad}</p>
+            <p>${char}</p>
           </div>
           <div class="col-2">
             <p>${pro}</p>
@@ -47,11 +54,6 @@ class UI {
 
     this.trans.innerHTML = toInsert
   }
-  //
-  // parsePro (orig) {
-  //
-  // }
 }
-
 
 console.log(pinyinConverter.convert('ni3 hao3'))
