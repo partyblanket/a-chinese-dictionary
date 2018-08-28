@@ -6,10 +6,10 @@ const searchChar = document.getElementById('searchChar')
 // Search input event listener
 searchChar.addEventListener('keyup', (e) => {
   const userText = e.target.value.trim()
-  if (userText !== '') {
+  if (e.keyCode === 13 && userText !== '') {
     console.log(userText)
     api.getTran(userText).then(data => {
-      if (data.tran.word.length ===  0) {
+      if (data.tran.length === 0) {
         console.log('not found')
       } else {
         ui.showTrans(data.tran)
