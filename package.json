@@ -2,12 +2,11 @@
   "name": "chinesedic",
   "version": "1.0.0",
   "description": "A Chinese learners dictionary",
-  "main": "index.js",
+  "main": "server/server.js",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "mongodb": "^3.1.1",
-    "mongoose": "^5.2.7"
+    "pinyin-converter": "^2.8.1"
   },
   "devDependencies": {
     "expect": "^23.5.0",

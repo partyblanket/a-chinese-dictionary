@@ -1,11 +1,11 @@
-const pinyinConverter = new PinyinConverter
+const pinyinConverter = new PinyinConverter();
 
 class UI {
-  constructor () {
-    this.trans = document.getElementById('trans')
+  constructor() {
+    this.trans = document.getElementById("trans");
   }
 
-  showTrans (tran) {
+  showTrans(tran) {
     let toInsert = `
     <div class="container">
       <div class="row">
@@ -20,19 +20,21 @@ class UI {
           <p>English</p>
         </div>
       </div>
-      `
+      `;
 
     tran.forEach(word => {
-      console.log(word)
-      let pro = word.cnpro
+      console.log(word);
+      let pro = word.cnpro;
       if (toneMarkBtn.checked === true) {
-        pro = pinyinConverter.convert(word.cnpro)
+        pro = pinyinConverter.convert(word.cnpro);
       }
-      let char = word.simp
+      let char = word.simp;
       if (tradSimpBtn.checked === true) {
-        char = word.trad
+        char = word.trad;
       }
-      toInsert = toInsert.concat('', `
+      toInsert = toInsert.concat(
+        "",
+        `
       <br>
         <div class="row">
           <div class="col-1">
@@ -46,14 +48,18 @@ class UI {
             <p>${word.en}</p>
           </div>
         </div>
-      `)
-    })
-    toInsert = toInsert.concat('', `
+      `
+      );
+    });
+    toInsert = toInsert.concat(
+      "",
+      `
       </div>
-    `)
+    `
+    );
 
-    this.trans.innerHTML = toInsert
+    this.trans.innerHTML = toInsert;
   }
 }
 
-console.log(pinyinConverter.convert('ni3 hao3'))
+console.log(pinyinConverter.convert("ni3 hao3"));
