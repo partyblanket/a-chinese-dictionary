@@ -3,7 +3,7 @@ class API {
 
   async getTran(char) {
     let apiUrl = "https://rocky-sierra-24254.herokuapp.com/entry/";
-    if (true) {
+    if (false) {
       apiUrl = "http://localhost:3000/entry/";
     }
     const charResponse = await fetch(`${apiUrl}${char}`);
