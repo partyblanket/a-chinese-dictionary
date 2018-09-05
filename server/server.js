@@ -9,6 +9,14 @@ const { dic } = require("./array/dictToArray");
 const app = express();
 const port = process.env.PORT || 3000;
 
+let maxLength = 0;
+dic.array1.forEach(el => {
+  if (el.trad.length > maxLength) {
+    maxLength = el.trad.length;
+  }
+});
+console.log(maxLength);
+
 app.use(express.static(path.join(__dirname, "..", "public")));
 
 app.use(bodyParser.json());
@@ -90,14 +98,16 @@ function searchPinyin(text) {
 
 function search(word) {
   // check full word
-  let foundWord = dic.array1.filter(el => el.trad === word);
+  let foundWord = dic.array1.filter(
+    el => el.trad === word.substr(0, maxLength)
+  );
 
   // if result, add to result array
   if (foundWord.length > 0) {
     foundWord.forEach(item => {
       resArray.push(item);
     });
-    /* remove march from wordString and search again if still characters left */
+    /* remove match from wordString and search again if still characters left */
     wordString = wordString.replace(resArray[resArray.length - 1].trad, "");
     if (wordString.length > 0) {
       search(wordString);
@@ -105,7 +115,7 @@ function search(word) {
   } else {
     // check minus one character from end
     if (word.slice(0, -1).length > 0) {
-      search(word.slice(0, -1));
+      search(word.substr(0, maxLength).slice(0, -1));
     }
   }
   /* start search from position 1 if no match */

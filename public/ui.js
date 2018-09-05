@@ -23,7 +23,6 @@ class UI {
       `;
 
     tran.forEach(word => {
-      console.log(word);
       let pro = word.cnpro;
       if (toneMarkBtn.checked === true) {
         pro = pinyinConverter.convert(word.cnpro);
@@ -61,5 +60,3 @@ class UI {
     this.trans.innerHTML = toInsert;
   }
 }
-
-console.log(pinyinConverter.convert("ni3 hao3"));
