@@ -1,0 +1,19 @@
+
+CREATE USER ACCOUNT
+allow users to save words
+allow users to add notes / words
+
+
+DATABASE
+separate words by '/', and make these clickable
+
+search English
+
+save button preferences between sessions
+
+create about page
+
+
+which sites should be linked
+link results to external sites
+add sound button
