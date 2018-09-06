@@ -98,9 +98,18 @@ function searchPinyin(text) {
 
 function search(word) {
   // check full word
-  let foundWord = dic.array1.filter(
-    el => el.trad === word.substr(0, maxLength)
-  );
+  let foundWord;
+  if (word.length === 1) {
+    foundWord = dic.array1.filter(el => el.trad === word);
+  } else if (word.length === 2) {
+    foundWord = dic.array2.filter(el => el.trad === word);
+  } else if (word.length === 3) {
+    foundWord = dic.array3.filter(el => el.trad === word);
+  } else if (word.length === 4) {
+    foundWord = dic.array4.filter(el => el.trad === word);
+  } else {
+    foundWord = dic.array1.filter(el => el.trad === word.substr(0, maxLength));
+  }
 
   // if result, add to result array
   if (foundWord.length > 0) {
