@@ -1,5 +1,5 @@
 const fs = require("fs");
-console.time("txt");
+console.time("Loading time dict");
 
 const dic = {
   array1: [],
@@ -34,8 +34,12 @@ fs.readFileSync(__dirname + "/cedict_ts.u8")
       dic.array5.push(word);
     }
   });
-console.log(dic.array1.length);
+console.log("Array1 length is " + dic.array1.length + " items");
+console.log("Array2 length is " + dic.array2.length + " items");
+console.log("Array3 length is " + dic.array3.length + " items");
+console.log("Array4 length is " + dic.array4.length + " items");
+console.log("Array5 length is " + dic.array5.length + " items");
 
-console.timeEnd("txt");
+console.timeEnd("Loading time dict");
 
 module.exports = { dic };
