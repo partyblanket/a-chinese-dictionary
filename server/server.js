@@ -1,11 +1,16 @@
 const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require('cors')
 
 const { dic } = require("./array/dictToArray");
 
 const app = express();
+
 const port = process.env.PORT || 3000;
+
+//CORS-enabled for all origin
+app.use(cors())
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 
